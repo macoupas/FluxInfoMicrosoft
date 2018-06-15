@@ -1,0 +1,55 @@
+﻿<Application
+    x:Class="FluxInfoUWP.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FluxInfoUWP"
+    xmlns:uc="using:FluxInfoUWP.UserControls"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <Style TargetType="Border" x:Key="categorie" >
+            <Setter Property="Background" Value="IndianRed"/>
+            <Setter Property="Margin" Value="15, 5, 15, 5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Width" Value="auto" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="titre_article">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style TargetType="TextBlock" BasedOn="{StaticResource titre_article}" x:Key="titre_detail_article">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextTrimming" Value="None" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="labels_ajout_rss" >
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalTextAlignment" Value="Right" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Margin" Value="15" />
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="textBox_ajout_rss">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="AcceptsReturn" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="nom_article">
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Text" Value="Nom du flux rss" />
+        </Style>
+    </Application.Resources>
+    
+</Application>

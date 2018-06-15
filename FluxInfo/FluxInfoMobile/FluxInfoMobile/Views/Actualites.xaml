@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="FluxInfoMobile.View.Actualites"
+             xmlns:components="clr-namespace:FluxInfoMobile.Components;assembly=FluxInfoMobile"
+             Title="Actualités"
+             Icon="actu.png">
+
+    <ListView x:Name="listView" ItemsSource="{Binding ItemsVM}" ItemTapped="OnItemTapped" RowHeight="150">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <components:ArticleCell TitreArticle="{Binding Titre}" LienImageArticle="{Binding LienImage}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
+</ContentPage>

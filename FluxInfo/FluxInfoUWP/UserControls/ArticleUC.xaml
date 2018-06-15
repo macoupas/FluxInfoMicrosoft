@@ -1,0 +1,29 @@
+﻿<UserControl
+    x:Class="FluxInfoUWP.UserControls.ArticleUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FluxInfoUWP.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="150"
+    d:DesignWidth="300">
+    <Border Background="Black" CornerRadius="5" BorderThickness="2">
+        <Grid Padding="10" >
+            <Grid.Background>
+                <ImageBrush ImageSource="{Binding LienImage, Mode=OneWay}" Opacity="0.75"/>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="titre" Grid.Row="0" Text="{x:Bind Title, Mode=OneWay}" Style="{StaticResource titre_article}"/>
+            <TextBlock Grid.Row="1" Text="{Binding Date}" Foreground="White"/>
+            <Border Grid.Row="2" Background="IndianRed" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock Text="Catégorie" Margin="5"/>
+            </Border>
+        </Grid>
+    </Border>
+    
+</UserControl>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:custom="clr-namespace:FluxInfoMobile.Renderers"
+             x:Class="FluxInfoMobile.View.AjoutRSS"
+             Title="Nouveau flux rss">
+            
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Annuler" Command="{Binding CancelCommand}" />
+        <ToolbarItem Text="Ajouter" Command="{Binding AjoutCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Lien :" Grid.Row="0" Margin="10"/>
+                    <custom:ExtendedEditorControl HasRoundedCorner="true"
+                                              IsExpandable="true"
+                                              x:Name="lien" 
+                                              Grid.Row="0"
+                                              Grid.Column="1"
+                                              Text="{Binding SelectedRss.ChannelVM.Lien, Mode=TwoWay}"/>
+                    
+                    <custom:RoundCornersButton 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        Margin="10" 
+                        Text="Obtenir des informations" 
+                        Command="{Binding ParserCommand}"
+                        CommandParameter="{Binding SelectedRss.ChannelVM.Lien}" />
+                    
+                    <Label Grid.Row="2" Text="Titre :" Margin="10"/>
+                    <custom:ExtendedEditorControl HasRoundedCorner="true"
+                                              IsExpandable="true"
+                                              x:Name="titre" 
+                                              Grid.Row="2"
+                                              Grid.Column="1"
+                                              Text="{Binding SelectedRss.ChannelVM.Title, Mode=TwoWay}"/>
+                    
+                    <Label Grid.Row="3" Text="Description :" Margin="10"/>
+                    <custom:ExtendedEditorControl HasRoundedCorner="true"
+                                              IsExpandable="true"
+                                              x:Name="description" 
+                                              Grid.Row="3"
+                                              Grid.Column="1"
+                                              Text="{Binding SelectedRss.ChannelVM.Description, Mode=TwoWay}"/>
+                    
+                    <Label Grid.Row="4" Text="Catégorie :" Margin="10"/>
+                    <custom:ExtendedEditorControl HasRoundedCorner="true"
+                                              IsExpandable="true"
+                                              x:Name="categorie" 
+                                              Grid.Row="4"
+                                              Grid.Column="1"
+                                              Text="{Binding SelectedRss.ChannelVM.CategorieVM.Nom, Mode=TwoWay}"/>
+                </Grid>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

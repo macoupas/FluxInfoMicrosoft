@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="FluxInfoUWP.UserControls.CardViewRssUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FluxInfoUWP.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="75"
+    d:DesignWidth="400">
+
+    <Grid Background="White" CornerRadius="5" Width="auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+
+        <CheckBox Grid.Column="0" Margin="20"/>
+        <TextBlock Grid.Column="1" Text="{Binding ChannelVM.Title}" TextTrimming="CharacterEllipsis" Style="{StaticResource nom_article}"/>
+    </Grid>
+</UserControl>

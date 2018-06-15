@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="FluxInfoMobile.View.DetailArticle">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Retour" Command="{Binding FacadeUtilisateurVM.CancelArticleCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Frame Style="{StaticResource blocArticle}">
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" HeightRequest="200" BackgroundColor="Black">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding ItemVM.LienImage}" Style="{StaticResource imageArticle}"
+                               Grid.Row="0" Grid.RowSpan="2"/>
+                        <Label Text="{Binding ItemVM.Titre}" Grid.Row="1" Style="{StaticResource titreDetailArticle}"/>
+                    </Grid>
+
+                    <Label Grid.Row="1" Text="{Binding ItemVM.Description}" Style="{StaticResource descriptionArticle}"/>
+
+                    <Label Grid.Row="2" Text="{Binding ItemVM.Date}" Style="{StaticResource dateArticle}"/>
+
+                    <Frame Grid.Row="3" Style="{StaticResource bordureCategorie}">
+                        <Label Text="Catégorie"/>
+                    </Frame>
+
+                    <Label Grid.Row="4" Text="Voir l'article en détail" Style="{StaticResource voirDetailArticle}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FacadeUtilisateurVM.OpenUrl}" CommandParameter="{Binding ItemVM.Lien}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </ScrollView>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
