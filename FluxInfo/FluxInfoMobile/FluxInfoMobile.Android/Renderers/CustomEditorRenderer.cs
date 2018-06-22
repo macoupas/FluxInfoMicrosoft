@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using Android.Content;
-using Android.Content.Res;
 using Android.Graphics.Drawables;
 using FluxInfoMobile.Droid.Renderers;
 using FluxInfoMobile.Renderers;
@@ -16,8 +15,7 @@ namespace FluxInfoMobile.Droid.Renderers
         Drawable originalBackground;
 
         public CustomEditorRenderer(Context context) : base(context)
-        {
-        }
+        {}
 
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Editor> e)
         {

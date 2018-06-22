@@ -17,42 +17,23 @@ namespace FluxInfoMobile.ViewModels
     /// et le model <see cref="FacadeUtilisateur"/>.
     /// </summary>
     public class FacadeUtilisateurVM : INotifyPropertyChanged
-    {
-        void HandleFunc(string arg)
-        {
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Représente la méthode qui sera appelée quand l'évenement <see cref="RssChangedEvent"/> sera lancé.
-        /// </summary>
-
-        RssParserWithLinQ parser = new RssParserWithLinQ();
-
-        protected void OnPropertyChanged([CallerMemberName] String property = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
-
+    { 
         #region COMMANDS
-
 
         /// <summary>
         /// Commande qui permet de parser un flux <see cref="Rss"/> donné par un lien.
         /// </summary>
-        public RelayCommand<string> ParserCommand
+        public RelayCommand<String> ParserCommand
         {
             get
             {
-                return new RelayCommand<string>(
+                return new RelayCommand<String>(
                     (lien) =>
                     {
                         try
                         {
                             parser.ParserRSS(lien);
-                        
+                            
                             
                         }
                         catch (Exception)
@@ -69,6 +50,9 @@ namespace FluxInfoMobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Commande qui permet d'ouvrir une page web dans le navigateur du téléphone en passant le lien en paramètre
+        /// </summary>
         public RelayCommand<String> OpenUrl
         {
             get
@@ -89,16 +73,14 @@ namespace FluxInfoMobile.ViewModels
         /// <summary>
         /// Commande qui permet d'ajouter un flux <see cref="Rss"/> à la liste <see cref="RssVM"/>
         /// </summary>
-
         public RelayCommand AjoutCommand
         {
             get
             {
                 return new RelayCommand(
-                    async () =>
+                    () =>
                     {
-                        if (RssValid)
-                        {
+                        if(RssValid) {
                             if (Ajout)
                             {
                                 AjouterRss(SelectedRss);
@@ -111,19 +93,10 @@ namespace FluxInfoMobile.ViewModels
                             UpdateArticle();
                             GoBackModal();
                         }
-                        else
-                        {
-                            if (Parent != null)
-                                await Parent.DisplayAlert("Erreur", "Flux invalide ou incomplet", "OK");
-                        }
-                    },
-                    () => {
-                        return true;
                     }
                 );
             }
         }
-
 
         /// <summary>
         /// Commande qui permet de faire un retour à la vue précedente
@@ -147,6 +120,9 @@ namespace FluxInfoMobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Commande permetant de revenir en arrière dans la hiérarchie des vues dans la vue <see cref="DetailArticle"/>
+        /// </summary>
         public RelayCommand CancelArticleCommand
         {
             get
@@ -184,14 +160,24 @@ namespace FluxInfoMobile.ViewModels
 
         #region PROPERTIES
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] String property = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
+
+        RssParserWithLinQ parser = new RssParserWithLinQ();
+
         public FacadeUtilisateur Model
         {
             get; set;
         }
+
         public INavigation Navigation { get; set; } = null;
         public ContentPage Parent { get; set; } = null;
 
-        public bool RssValid { get; set; }
+        public Boolean RssValid { get; set; } = false;
 
         /// <summary>
         /// <see cref="SelectedRss"/> est le RssVM qui est utilisé quand l'utilisateur veut ajouter ou modifier un Rss.
@@ -214,29 +200,6 @@ namespace FluxInfoMobile.ViewModels
         String oldCategorieNom;
         String oldDescription;
 
-        public int SelectedArticleIndex
-        {
-            get { return selectedArticleIndex; }
-            set
-            {
-                selectedArticleIndex = value;
-                OnPropertyChanged();
-            }
-        }
-        private int selectedArticleIndex = -1;
-
-        public ItemVM SelectedItem
-        {
-            get
-            {
-                if (selectedArticleIndex < 0)
-                {
-                    return null;
-                }
-                return itemsVM[SelectedArticleIndex];
-            }
-        }
-
         public int SelectedRssIndex
         {
             get { return selectedRssIndex; }
@@ -249,25 +212,6 @@ namespace FluxInfoMobile.ViewModels
             }
         }
         private int selectedRssIndex = -1;
-
-        /// <summary>
-        /// Permet de récupérer l'image d'une étoile pleine ou vide si l'article est dans les
-        /// favoris ou pas.
-        /// </summary>
-        public string ImageFav
-        {
-            get
-            {
-                if (SelectedItem.EstDansFavoris)
-                {
-                    return "ms-appx:///Assets/star.png";
-                }
-                else
-                {
-                    return "ms-appx:///Assets/starvide.png";
-                }
-            }
-        }
 
         public UtilisateurVM UtilisateurVM
         {
@@ -298,18 +242,30 @@ namespace FluxInfoMobile.ViewModels
 
         #region METHODS
 
+        /// <summary>
+        /// Méthode appelée lorsqu'un flux <see cref="Rss"/> a été chargé par le parserRSS.
+        /// </summary>
+        /// <param name="sender">Objet envoyant l'évenement</param>
+        /// <param name="rss"> Le <see cref="Rss"/> qui a été changé</param>
         public void RssChanged(object sender, Rss rss)
         {
             SelectedRss = new RssVM(rss);
             RssValid = true;
         }
 
+        /// <summary>
+        /// Permet d'ajouter un flux <see cref="Rss"/> et de récuperer les articles
+        /// </summary>
+        /// <param name="rss"></param>
         private void AjouterRss(RssVM rss)
         {
             UtilisateurVM.AjouterRss(rss);
             ItemsVM = UtilisateurVM.RecupererArticles();
         }
 
+        /// <summary>
+        /// Permet de vider la liste des <see cref="ItemVM"/> pour aller récuperer les nouveaux articles
+        /// </summary>
         public void UpdateArticle()
         {
             itemsVM.Clear();
@@ -319,6 +275,9 @@ namespace FluxInfoMobile.ViewModels
             }
         }
 
+        /// <summary>
+        /// Permet de revenir à la vue précédente de la modal
+        /// </summary>
         public void GoBackModal()
         {
             RssValid = false;

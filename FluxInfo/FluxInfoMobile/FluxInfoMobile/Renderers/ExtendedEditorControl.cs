@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace FluxInfoMobile.Renderers
 {
@@ -27,17 +26,23 @@ namespace FluxInfoMobile.Renderers
             set { SetValue(HasRoundedCornerProperty, value); }
         }
 
+        // Constructeur de la classe
+        // Abonnement sur l'évennement TextChanged
         public ExtendedEditorControl()
         {
             TextChanged += OnTextChanged;
         }
 
+        // Destructeur de la classe
+        // Désabonnement sur l'évennement TextChanged
         ~ExtendedEditorControl()
         {
             TextChanged -= OnTextChanged;
         }
 
-        private void OnTextChanged(object sender, TextChangedEventArgs e)
+        // Si la property IsExpandable est à vrai,
+        // on appelle InvalidateMesure() pour redimensionner l'Editor si le text est trop long
+        void OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (IsExpandable) InvalidateMeasure();
         }

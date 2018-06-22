@@ -12,6 +12,10 @@ namespace FluxInfoMobile.Components
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArticleCell : ViewCell
 	{
+
+        /// <summary>
+        /// Titre de l'article bindé avec la vue principale
+        /// </summary>
         public static readonly BindableProperty TitreArticleProperty =
         BindableProperty.Create("TitreArticle", typeof(string), typeof(ArticleCell), "TitreArticle");
 
@@ -21,6 +25,9 @@ namespace FluxInfoMobile.Components
             set { SetValue(TitreArticleProperty, value); }
         }
 
+        /// <summary>
+        /// Lien de l'image de l'article bindé avec la vue principale
+        /// </summary>
         public static readonly BindableProperty LienImageArticleProperty =
         BindableProperty.Create("LienImageArticle", typeof(string), typeof(ArticleCell), "LienImageArticle");
 

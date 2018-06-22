@@ -11,26 +11,35 @@ namespace FluxInfoMobile.ViewModels
 {
     public class UtilisateurVM : INotifyPropertyChanged
     {
+
+        #region PROPERTIES
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Utilisateur Model { get; set; }
 
-        public IEnumerable<CategorieVM> Categories { get; set; }
-
         public IEnumerable<ItemVM> ArticlesFavoris { get; set; }
 
-        public IEnumerable<MotCleVM> MotsCles { get; set; }
+        #endregion
 
         public UtilisateurVM(Utilisateur model)
         {
             Model = model;
         }
 
+        /// <summary>
+        /// Permet d'ajouter un <see cref="RssVM"/> au model
+        /// </summary>
+        /// <param name="rss"></param>
         public void AjouterRss(RssVM rss)
         {
             Model.AjouterRSS(rss.Model);
         }
 
+        /// <summary>
+        /// Permet de récuperer les articles en prenant tous les flux <see cref="Rss"/>
+        /// </summary>
+        /// <returns></returns>
         public ObservableCollection<ItemVM> RecupererArticles()
         {
             IEnumerable<Item> tmp =  Model.RecupererArticles();
@@ -44,6 +53,10 @@ namespace FluxInfoMobile.ViewModels
             return result;
         }
 
+        /// <summary>
+        /// Permet de récuperer tous les flux <see cref="RssVM"/> de l'utilisateur
+        /// </summary>
+        /// <returns></returns>
         public ObservableCollection<RssVM> RssDispo()
         {
             IEnumerable<Rss> tmp = Model.RssDispo;

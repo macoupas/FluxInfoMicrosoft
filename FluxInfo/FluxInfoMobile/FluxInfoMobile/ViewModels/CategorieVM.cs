@@ -11,6 +11,9 @@ namespace FluxInfoMobile.ViewModels
 {
     public class CategorieVM : INotifyPropertyChanged
     {
+
+        #region PROPERTIES
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] String property = null)
@@ -41,6 +44,8 @@ namespace FluxInfoMobile.ViewModels
                 Model.IsSelect = value; OnPropertyChanged();
             }
         }
+
+        #endregion
 
         public CategorieVM(Categorie model) => Model = model;
     }

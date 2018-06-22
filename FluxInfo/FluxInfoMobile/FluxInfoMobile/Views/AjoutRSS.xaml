@@ -42,7 +42,8 @@
                     <custom:RoundCornersButton 
                         Grid.Row="1" 
                         Grid.Column="1" 
-                        Margin="10" 
+                        Margin="10"
+                        CornerRadius="22"
                         Text="Obtenir des informations" 
                         Command="{Binding ParserCommand}"
                         CommandParameter="{Binding SelectedRss.ChannelVM.Lien}" />

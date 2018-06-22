@@ -11,6 +11,9 @@ namespace FluxInfoMobile.ViewModels
 {
     public class RssVM : INotifyPropertyChanged
     {
+
+        #region PROPERTIES
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] String property = null)
         {
@@ -20,6 +23,8 @@ namespace FluxInfoMobile.ViewModels
         public Rss Model { get; }
 
         public ChannelVM ChannelVM { get; }
+
+        #endregion
 
         public RssVM(Rss model)
         {

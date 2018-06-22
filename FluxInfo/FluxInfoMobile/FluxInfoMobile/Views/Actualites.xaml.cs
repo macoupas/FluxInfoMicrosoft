@@ -18,6 +18,11 @@ namespace FluxInfoMobile.View
             BindingContext = FacadeUtilisateurVM;
         }
 
+        /// <summary>
+        /// Méthode qui est appelée lorsque l'utilisateur sélectionne un article dans la liste
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             if(e.Item is ItemVM)

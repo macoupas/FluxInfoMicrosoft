@@ -12,11 +12,12 @@ namespace FluxInfoMobile.iOS.Renderers
         {
             base.OnElementChanged(e);
 
-
-            if (Control != null)
+            if (e.NewElement != null)
             {
-                Control.Layer.CornerRadius = 22;
+                var customControl = (RoundCornersButton)e.NewElement;
+
                 Control.ClipsToBounds = true;
+                Control.Layer.CornerRadius = customControl.CornerRadius;
             }
         }
     }

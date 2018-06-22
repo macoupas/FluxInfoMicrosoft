@@ -11,6 +11,9 @@ namespace FluxInfoMobile.ViewModels
 {
     public class ItemVM : INotifyPropertyChanged
     {
+
+        #region PROPERTIES
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] String property = null)
@@ -95,6 +98,8 @@ namespace FluxInfoMobile.ViewModels
                 Model.EstDansFav = value; OnPropertyChanged();
             }
         }
+
+        #endregion
 
         public ItemVM(Item item) => Model = item;
 

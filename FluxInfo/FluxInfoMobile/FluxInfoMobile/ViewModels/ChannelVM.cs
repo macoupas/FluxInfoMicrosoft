@@ -12,6 +12,9 @@ namespace FluxInfoMobile.ViewModels
 {
     public class ChannelVM : INotifyPropertyChanged
     {
+
+        #region PROPERTIES
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] String property = null)
@@ -58,6 +61,8 @@ namespace FluxInfoMobile.ViewModels
 
         private ObservableCollection<ItemVM> itemsVM = new ObservableCollection<ItemVM>();
         public ObservableCollection<ItemVM> ItemsVM { get { return itemsVM; } }
+
+        #endregion
 
         public ChannelVM(Channel channel)
         {
